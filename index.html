@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Digitalna učionica Zdravstvene njege – Srce i krvne žile">
+<title>ZN + Digitalna učionica · Srce i krvne žile</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<div class="brand">ZN + Digitalna učionica<small>ZDRAVSTVENA NJEGA</small></div>
+<div class="search"><input id="searchInput" placeholder="Pretraži ovu učionicu…"><button class="btn" onclick="doSearch()">Traži</button></div>
+<div class="top-actions"><button class="btn" onclick="window.print()">🖨 Ispis</button><button class="btn" onclick="showHome()">Početna</button></div>
+</div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+<h3>Nastavne cjeline</h3>
+<button class="module-btn" onclick="showHeartHome()">❤️ Srce i krvne žile</button>
+<button class="module-btn disabled">🫁 Dišni sustav · uskoro</button>
+<button class="module-btn disabled">🍽 Probavni sustav · uskoro</button>
+<button class="module-btn disabled">💧 Mokraćni sustav · uskoro</button>
+<button class="module-btn disabled">🧠 Živčani sustav · uskoro</button>
+<hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+<h3>Lekcije – Srce</h3>
+<button class="lesson-btn" data-lesson="1">01 Srce i krvotok</button>
+<button class="lesson-btn" data-lesson="2">02 Promatranje bolesnika</button>
+<button class="lesson-btn" data-lesson="3">03 Dijagnostika i EKG</button>
+<button class="lesson-btn" data-lesson="4">04 Sigurna primjena terapije</button>
+<button class="lesson-btn" data-lesson="5">05 Koronarna bolest i akutni koronarni sindrom</button>
+<button class="lesson-btn" data-lesson="6">06 Srčano popuštanje i plućni edem</button>
+<button class="lesson-btn" data-lesson="7">07 Krvni tlak, vene i ostala vaskularna stanja</button>
+<button class="lesson-btn" data-lesson="8">08 Edukacija bolesnika i plan zdravstvene njege</button>
+<button class="lesson-btn" data-lesson="9">09 Animacije i interaktivno ponavljanje</button>
+<button class="lesson-btn" data-lesson="10">10 Provjeri znanje – priprema za usmeni ispit</button>
+<div style="margin-top:14px"><small>Napredak</small><div class="progress"><div id="progressBar"></div></div><strong id="progressText">0 / 10</strong></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+<button class="lesson-btn" onclick="showAux('teacher')">Nastavnička priprema</button>
+<button class="lesson-btn" onclick="showAux('glossary')">Pojmovnik</button>
+<button class="lesson-btn" onclick="showAux('sources')">Izvori i napomene</button>
+</aside>
+<main>
+<section id="home">
+<div class="hero">
+<div class="eyebrow">ZDRAVSTVENA NJEGA · DIGITALNA UČIONICA</div>
+<h1>Uči. Poveži. Primijeni.</h1>
+<p>Jedinstvena digitalna učionica organizirana po organskim sustavima. Svaka nastavna cjelina povezuje udžbenik, nastavnikove materijale, suvremene stručne smjernice, sestrinske postupke, kliničke scenarije i pripremu za usmeno odgovaranje.</p>
+<div class="hero-grid">
+<div class="hero-stat"><strong>01</strong><br/>Srce i krvne žile – aktivno</div>
+<div class="hero-stat"><strong>10</strong><br/>detaljnih lekcija u prvom modulu</div>
+<div class="hero-stat"><strong>40+</strong><br/>usmenih pitanja + scenariji</div>
+</div></div>
+<div class="modules modules-home">
+<div class="module-card active"><span class="pill">AKTIVNO</span><h3>❤️ Srce i krvne žile</h3><p>Anatomija i fiziologija, promatranje bolesnika, EKG/dijagnostika, terapija, ACS/AIM, srčano popuštanje, plućni edem, hipertenzija, vene, edukacija i usmeno vrednovanje.</p><button class="btn primary" onclick="openLesson(1)">Otvori cjelinu</button></div>
+<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>🫁 Dišni sustav</h3><p>Struktura je pripremljena za kasniju izradu istim standardom.</p></div>
+<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>🍽 Probavni sustav</h3><p>Bolesti probavnog sustava i zdravstvena njega – budući modul.</p></div>
+<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>💧 Mokraćni sustav</h3><p>Bolesti mokraćnog sustava i zdravstvena njega – budući modul.</p></div>
+<div class="module-card"><span class="pill soon">PLANIRANO</span><h3>🧠 Živčani sustav</h3><p>Neurološka zdravstvena njega – budući modul.</p></div>
+<div class="module-card"><span class="pill soon">PLANIRANO</span><h3>🧬 Ostale cjeline</h3><p>Endokrini, hematološki, lokomotorni i drugi sustavi mogu se dodavati bez mijenjanja osnovne platforme.</p></div>
+</div>
+<div class="section">
+<h3>Srce i krvne žile – kako učiti</h3>
+<p>Počni anatomijom i krvotokom, zatim prijeđi na promatranje i dijagnostiku. Nakon toga uči bolesti kroz kliničku logiku: što se događa → kako se bolesnik prezentira → što se dijagnostički radi → što liječnik liječi → što medicinska sestra/tehničar promatra, provodi i dokumentira → kako se bolesnik educira.</p>
+</div>
+</section>
+<div id="content"></div>
+<div class="footer"><p>ZN + Digitalna učionica · Srednja škola Travnik – Nova Bila</p><p class="screen-only">Edukativni materijal. U kliničkoj praksi primjenjuju se važeći lokalni protokoli i liječničke odredbe.</p></div>
+</main></div>
+<script src="data/exam.js"></script>
+<script src="app.js"></script>
+</body></html>
