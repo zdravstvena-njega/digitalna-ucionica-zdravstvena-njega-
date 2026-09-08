@@ -46,6 +46,30 @@ async function loadHtml(path,label='sadržaj'){
   }
 }
 
+function injectLessonVisual(n){
+  const visuals={
+    1:['assets/heart-flow.svg','Srce i krvotok','Originalna shema malog i velikog krvnog optoka.'],
+    3:['assets/ekg-placement.svg','EKG – elektrode i odvodi','Položaj 10 elektroda za snimanje 12-kanalnog EKG-a.'],
+    5:['assets/acs-progression.svg','Od ateroskleroze do AIM-a','Razvoj plaka, rupture, tromba i akutnog infarkta miokarda.'],
+    6:['assets/hf-pulmonary-edema.svg','Srčano popuštanje i plućni edem','Veza smanjene pumpne funkcije, plućne kongestije i edema.'],
+    7:['assets/bp-measurement.svg','Pravilno mjerenje krvnog tlaka','Položaj bolesnika, ruke i manžete za pouzdanije mjerenje.']
+  };
+  const v=visuals[n];
+  if(!v)return;
+  const lesson=content.querySelector('.lesson');
+  const header=content.querySelector('.lesson-header');
+  if(!lesson||!header||content.querySelector('.lesson-visual'))return;
+  const fig=document.createElement('figure');
+  fig.className='lesson-visual';
+  fig.style.margin='0 0 18px';
+  fig.style.padding='12px';
+  fig.style.background='#fff';
+  fig.style.border='1px solid #d9e2ec';
+  fig.style.borderRadius='16px';
+  fig.innerHTML=`<img src="${v[0]}?v=2" alt="${v[1]}" loading="eager" style="display:block;width:100%;height:auto;border-radius:10px"><figcaption style="margin-top:8px;color:#64748b;font-size:.9rem;text-align:center">${v[2]} · Digitalna učionica – Zdravstvena njega</figcaption>`;
+  header.insertAdjacentElement('afterend',fig);
+}
+
 async function openLesson(n){
   n=Math.max(1,Math.min(10,n));
   currentView='lesson-'+n;
@@ -55,6 +79,7 @@ async function openLesson(n){
   content.innerHTML=await loadHtml(`data/lesson-${String(n).padStart(2,'0')}.html`,`lekciju ${n}`);
   const loadedLesson=content.querySelector('.lesson');
   if(loadedLesson) loadedLesson.classList.add('active');
+  injectLessonVisual(n);
   setActiveLesson(n);
   wireLesson(n);
   if(n===10)buildExam();
