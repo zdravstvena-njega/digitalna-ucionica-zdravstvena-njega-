@@ -1,0 +1,69 @@
+<section class="lesson" data-title="Srce i krvotok" id="lesson-1">
+<div class="lesson-header">
+<div class="kicker">ANATOMIJA I FIZIOLOGIJA · LEKCIJA 01/10</div>
+<h2>01 Srce i krvotok</h2>
+<div class="outcomes"><div class="outcome">✓ Prepoznati srčane šupljine, zaliske i velike krvne žile.</div><div class="outcome">✓ Objasniti mali i veliki krvni optok te osnovu koronarne cirkulacije.</div><div class="outcome">✓ Povezati sistolu, dijastolu, udarni volumen i minutni volumen.</div><div class="outcome">✓ Objasniti osnovni provodni sustav srca i vezu s EKG-om.</div></div>
+<div class="done-row"><input class="done-check" data-done="1" id="done-1" type="checkbox"/><label for="done-1"><strong>Označi lekciju završenom</strong></label></div>
+</div>
+<div class="section">
+<h3>1. Građa srca – što učenik mora moći pokazati i objasniti</h3>
+<p>Srce je šuplji mišićni organ smješten u medijastinumu. Funkcionalno ga možemo promatrati kao dvije povezane pumpe: desno srce prima vensku krv iz sistemske cirkulacije i potiskuje je prema plućima, dok lijevo srce prima oksigeniranu krv iz pluća i potiskuje je u aortu i veliki krvni optok. Srčane šupljine su desna i lijeva pretklijetka te desna i lijeva klijetka. Zalisci usmjeravaju krv jednim smjerom i smanjuju povrat krvi.</p>
+<div class="heart-wrap">
+<svg aria-label="Pojednostavljena originalna shema srca" class="heart-svg" viewbox="0 0 620 500">
+<rect fill="#fbfdff" height="500" rx="24" width="620" x="0" y="0"></rect>
+<path d="M305 110 C225 40,115 95,125 215 C135 325,250 405,310 450 C370 405,485 325,495 215 C505 95,395 40,315 110Z" fill="#f8d7da" stroke="#9f1239" stroke-width="4"></path>
+<path d="M308 115 L308 430" stroke="#ffffff" stroke-width="10"></path>
+<ellipse cx="230" cy="175" fill="#c7d2fe" rx="65" ry="55" stroke="#3730a3" stroke-width="3"></ellipse>
+<ellipse cx="385" cy="175" fill="#fecdd3" rx="65" ry="55" stroke="#be123c" stroke-width="3"></ellipse>
+<ellipse cx="235" cy="310" fill="#bfdbfe" rx="72" ry="92" stroke="#1d4ed8" stroke-width="3"></ellipse>
+<ellipse cx="385" cy="310" fill="#fecaca" rx="72" ry="92" stroke="#b91c1c" stroke-width="3"></ellipse>
+<path d="M385 95 C385 35,455 25,470 85 L470 165" fill="none" stroke="#b91c1c" stroke-linecap="round" stroke-width="20"></path>
+<path d="M235 95 C235 40,180 35,165 88 L165 150" fill="none" stroke="#1d4ed8" stroke-linecap="round" stroke-width="18"></path>
+<path d="M155 130 L95 95" stroke="#1d4ed8" stroke-linecap="round" stroke-width="16"></path>
+<path d="M155 175 L75 190" stroke="#1d4ed8" stroke-linecap="round" stroke-width="16"></path>
+<path d="M445 135 L535 100" stroke="#dc2626" stroke-linecap="round" stroke-width="14"></path>
+<path d="M445 175 L550 185" stroke="#dc2626" stroke-linecap="round" stroke-width="14"></path>
+<text font-size="17" font-weight="700" x="205" y="178">Desna pretklijetka</text>
+<text font-size="17" font-weight="700" x="350" y="178">Lijeva pretklijetka</text>
+<text font-size="17" font-weight="700" x="195" y="315">Desna klijetka</text>
+<text font-size="17" font-weight="700" x="350" y="315">Lijeva klijetka</text>
+<text font-size="17" font-weight="700" x="455" y="63">Aorta</text>
+<text font-size="16" font-weight="700" x="72" y="82">Šuplje vene</text>
+<text font-size="16" font-weight="700" x="62" y="224">Plućna arterija</text>
+<text font-size="16" font-weight="700" x="465" y="220">Plućne vene</text>
+</svg>
+<div>
+<h4>Zalisci</h4>
+<ul>
+<li><strong>Trikuspidalni zalistak</strong> – između desne pretklijetke i desne klijetke.</li>
+<li><strong>Plućni zalistak</strong> – između desne klijetke i plućne arterije.</li>
+<li><strong>Mitralni zalistak</strong> – između lijeve pretklijetke i lijeve klijetke.</li>
+<li><strong>Aortalni zalistak</strong> – između lijeve klijetke i aorte.</li>
+</ul>
+<div class="callout"><strong>Zapamti</strong>Desno srce pumpa krv prema plućima; lijevo srce pumpa krv prema cijelom tijelu. Plućna arterija nosi krv siromašniju kisikom, a plućne vene krv bogatiju kisikom.</div>
+</div></div>
+</div>
+<div class="section">
+<h3>2. Put krvi – mali i veliki optok</h3>
+<div class="flow" id="bloodFlow">
+<span>Gornja/donja šuplja vena</span><b>→</b><span>Desna pretklijetka</span><b>→</b><span>Trikuspidalni zalistak</span><b>→</b><span>Desna klijetka</span><b>→</b><span>Plućni zalistak</span><b>→</b><span>Plućna arterija</span><b>→</b><span>Pluća</span><b>→</b><span>Plućne vene</span><b>→</b><span>Lijeva pretklijetka</span><b>→</b><span>Mitralni zalistak</span><b>→</b><span>Lijeva klijetka</span><b>→</b><span>Aortalni zalistak</span><b>→</b><span>Aorta</span><b>→</b><span>Tkiva</span>
+</div>
+<p><button class="btn primary" onclick="animateBlood()">▶ Pokreni put krvi</button></p>
+<p><strong>Mali (plućni) optok:</strong> desna klijetka → plućna arterija → pluća → plućne vene → lijeva pretklijetka. <strong>Veliki (sistemski) optok:</strong> lijeva klijetka → aorta → organi i tkiva → šuplje vene → desna pretklijetka.</p>
+</div>
+<div class="section">
+<h3>3. Srčani ciklus, udarni i minutni volumen</h3>
+<div class="grid2">
+<div class="card"><h4>Dijastola</h4><p>Faza relaksacije i punjenja klijetki. Atrioventrikularni zalisci su tijekom većeg dijela punjenja otvoreni, a semilunarni zatvoreni.</p></div>
+<div class="card"><h4>Sistola</h4><p>Faza kontrakcije klijetki. Povećanje intraventrikularnog tlaka zatvara AV zaliske, a potom se otvaraju aortalni i plućni zalistak i krv se izbacuje.</p></div>
+</div>
+<p><strong>Udarni volumen (SV)</strong> je količina krvi koju klijetka izbaci jednim otkucajem. <strong>Minutni volumen (CO)</strong> približno je umnožak frekvencije srca i udarnog volumena. Za zdravstvenu njegu važno je razumjeti da ozbiljna tahikardija, bradikardija, gubitak kontraktilnosti ili smanjen volumen cirkulirajuće krvi mogu sniziti srčani minutni volumen i perfuziju organa.</p>
+<div class="callout info"><strong>Poveži s praksom</strong>Hladna periferija, produženo kapilarno punjenje, oligurija, konfuzija i hipotenzija mogu biti znakovi smanjene perfuzije. Sestra ne zaključuje uzrok samo iz jednog znaka, nego procjenjuje cijelog bolesnika i trendove.</div>
+</div>
+<div class="section">
+<h3>4. Koronarna cirkulacija i provodni sustav</h3>
+<p>Koronarne arterije opskrbljuju miokard kisikom i hranjivim tvarima. Kada aterosklerotski plak pukne i nastane tromb, protok može naglo pasti ili prestati, što je osnova akutnog koronarnog sindroma. Električni impuls normalno nastaje u sinoatrijskom (SA) čvoru, širi se pretklijetkama do atrioventrikularnog (AV) čvora, potom Hisovim snopom, granama i Purkinjeovim vlaknima kroz klijetke.</p>
+<div class="callout"><strong>Klinički važno</strong>Električna aktivnost prethodi mehaničkoj kontrakciji. Zbog toga se uvijek procjenjuje bolesnik, a ne samo monitor: uredan ili organiziran EKG zapis ne jamči da postoji učinkovit puls.</div>
+</div>
+<div class="nav-bottom"><button class="btn prev" data-current="1">← Prethodna</button><button class="btn primary next" data-current="1">Sljedeća →</button></div>
+</section>
