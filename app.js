@@ -3,7 +3,6 @@ const home=document.getElementById('home');
 const sidebar=document.querySelector('.sidebar');
 let currentView='home';
 
-// Mobilna navigacija: gumb u zaglavlju, zatvaranje izbornika i pozadina.
 (function initMobileNav(){
   const actions=document.querySelector('.top-actions');
   if(actions && !document.querySelector('.mobile-nav-toggle')){
@@ -30,58 +29,42 @@ let currentView='home';
   }
 })();
 
-function openNav(){
-  sidebar?.classList.add('open');
-  document.querySelector('.nav-backdrop')?.classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeNav(){
-  sidebar?.classList.remove('open');
-  document.querySelector('.nav-backdrop')?.classList.remove('show');
-  document.body.style.overflow='';
+function openNav(){sidebar?.classList.add('open');document.querySelector('.nav-backdrop')?.classList.add('show');document.body.style.overflow='hidden'}
+function closeNav(){sidebar?.classList.remove('open');document.querySelector('.nav-backdrop')?.classList.remove('show');document.body.style.overflow=''}
+function setActiveLesson(n){document.querySelectorAll('.lesson-btn[data-lesson]').forEach(x=>x.classList.toggle('active',+x.dataset.lesson===n))}
+function showHome(){currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);closeNav();window.scrollTo(0,0)}
+function showHeartHome(){showHome()}
+
+async function loadHtml(path,label='sadržaj'){
+  try{
+    const r=await fetch(`${path}?v=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.text();
+  }catch(e){
+    console.error('Greška pri učitavanju:',path,e);
+    return `<div class="section"><div class="callout danger"><strong>Nije moguće učitati ${label}</strong>Provjeri internetsku vezu i osvježi stranicu. Ako se problem ponavlja, nastavnik treba provjeriti GitHub Pages datoteku: <code>${path}</code>.</div></div>`;
+  }
 }
 
-function setActiveLesson(n){
-  document.querySelectorAll('.lesson-btn[data-lesson]').forEach(x=>x.classList.toggle('active',+x.dataset.lesson===n));
-}
-function showHome(){
-  currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);closeNav();window.scrollTo(0,0)
-}
-function showHeartHome(){showHome()}
 async function openLesson(n){
   n=Math.max(1,Math.min(10,n));
   currentView='lesson-'+n;home.style.display='none';content.innerHTML='<div class="section">Učitavanje lekcije…</div>';closeNav();
-  const r=await fetch(`data/lesson-${String(n).padStart(2,'0')}.html`);
-  content.innerHTML=await r.text();
-  setActiveLesson(n);
-  wireLesson(n);
-  if(n===10)buildExam();
-  window.scrollTo(0,0);
+  content.innerHTML=await loadHtml(`data/lesson-${String(n).padStart(2,'0')}.html`,`lekciju ${n}`);
+  setActiveLesson(n);wireLesson(n);if(n===10)buildExam();window.scrollTo(0,0);
 }
 async function showAux(kind){
   currentView=kind;home.style.display='none';content.innerHTML='<div class="section">Učitavanje…</div>';closeNav();
-  const r=await fetch(`data/${kind}.html`);
-  content.innerHTML=await r.text();
-  setActiveLesson(0);
-  window.scrollTo(0,0)
+  content.innerHTML=await loadHtml(`data/${kind}.html`,kind);setActiveLesson(0);window.scrollTo(0,0)
 }
 function wireLesson(n){
  const c=content.querySelector('.done-check');
- if(c){
-   c.checked=localStorage.getItem('zn-heart-done-'+n)==='1';
-   c.addEventListener('change',()=>{localStorage.setItem('zn-heart-done-'+n,c.checked?'1':'0');progress()})
- }
+ if(c){c.checked=localStorage.getItem('zn-heart-done-'+n)==='1';c.addEventListener('change',()=>{localStorage.setItem('zn-heart-done-'+n,c.checked?'1':'0');progress()})}
  content.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>n<10?openLesson(n+1):showHome()));
  content.querySelectorAll('.prev').forEach(b=>b.addEventListener('click',()=>n>1?openLesson(n-1):showHome()));
 }
 document.querySelectorAll('.lesson-btn[data-lesson]').forEach(b=>b.addEventListener('click',()=>openLesson(+b.dataset.lesson)));
 
-function progress(){
- let c=0;
- for(let i=1;i<=10;i++) if(localStorage.getItem('zn-heart-done-'+i)==='1') c++;
- document.getElementById('progressBar').style.width=(c*10)+'%';
- document.getElementById('progressText').textContent=c+' / 10'
-}
+function progress(){let c=0;for(let i=1;i<=10;i++)if(localStorage.getItem('zn-heart-done-'+i)==='1')c++;document.getElementById('progressBar').style.width=(c*10)+'%';document.getElementById('progressText').textContent=c+' / 10'}
 progress();
 
 const simText={
@@ -90,49 +73,25 @@ const simText={
  ecgStage:["SA čvor pokreće impuls → depolarizacija pretklijetki (P val).","Impuls usporava kroz AV čvor → PR interval predstavlja AV provođenje.","Brza depolarizacija klijetki stvara QRS kompleks.","Repolarizacija klijetki prikazuje se prvenstveno T valom."],
  acsStage:["Stabilan plak sužava koronarnu arteriju.","Ruptura/erozija izlaže trombogeni sadržaj.","Nastaje tromb koji može djelomično ili potpuno zatvoriti lumen.","Smanjen protok dovodi do ishemije, a produljena ishemija do nekroze."],
  edemaStage:["Lijeva klijetka ne prazni krv dovoljno učinkovito.","Raste tlak u lijevom atriju i plućnim venama/kapilarama.","Tekućina prelazi u plućni intersticij → dispneja i smanjena podajnost pluća.","Tekućina može ući u alveole → teška hipoksemija, hropci i akutni plućni edem."],
- measureStage:["Bolesnik miruje prije mjerenja.","Pravilno sjedi, ruka je poduprta u visini srca.","Manžeta je odgovarajuće veličine i pravilno postavljena.","Mjerenje se ponavlja i procjenjuje prosjek/trend."]
+ measureStage:["Bolesnik miruje prije mjerenja.","Pravilno sjedi, ruka je poduprta u visini srca.","Manžeta je odgovarajuće veličine i pravilno postavljena.","Mjerenje se ponavlja i procjenjuje prosjek/trend."],
+ perfusionStage:["Srce izbacuje manje krvi nego što je potrebno tkivima.","Aktiviraju se simpatički i neurohormonalni mehanizmi: tahikardija, vazokonstrikcija i zadržavanje tekućine pokušavaju održati perfuziju.","Ako kompenzacija nije dovoljna, mozak, bubrezi i periferna tkiva dobivaju premalo krvi: konfuzija, oligourija, hladna periferija i slab puls.","Teška i trajna hipoperfuzija može prijeći u kardiogeni šok s hipotenzijom, poremećajem svijesti i progresivnim zatajenjem organa."],
+ dvtStage:["Tromb se formira u dubokoj veni, najčešće donjeg ekstremiteta.","Dio tromba može se odvojiti od stijenke vene.","Embolus putuje venskim sustavom kroz desno srce prema plućnim arterijama.","Začepljenje plućne arterije uzrokuje plućnu emboliju: naglu dispneju, bol, tahikardiju, hipoksemiju, a kod masivne PE i šok/sinkopu."]
 };
-function simStep(id,idx,btn){
- const el=document.getElementById(id); if(!el)return;
- el.textContent=(simText[id]||[])[idx]||'';
- btn.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
- btn.classList.add('active')
-}
-function animateBlood(){
- const flow=document.getElementById('bloodFlow');
- if(!flow){openLesson(1).then(()=>setTimeout(animateBlood,150));return}
- const spans=[...flow.querySelectorAll('span')]; let i=0;
- spans.forEach(x=>x.classList.remove('pulse'));
- const tick=()=>{spans.forEach(x=>x.classList.remove('pulse'));if(i>=spans.length)return;spans[i].classList.add('pulse');i++;setTimeout(tick,550)};
- tick()
-}
+function simStep(id,idx,btn){const el=document.getElementById(id);if(!el)return;el.textContent=(simText[id]||[])[idx]||'';btn.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function animateBlood(){const flow=document.getElementById('bloodFlow');if(!flow){openLesson(1).then(()=>setTimeout(animateBlood,150));return}const spans=[...flow.querySelectorAll('span')];let i=0;spans.forEach(x=>x.classList.remove('pulse'));const tick=()=>{spans.forEach(x=>x.classList.remove('pulse'));if(i>=spans.length)return;spans[i].classList.add('pulse');i++;setTimeout(tick,550)};tick()}
+
 function buildExam(){
  const qWrap=document.getElementById('oralQuestions');
- if(qWrap&&!qWrap.dataset.built){
-   let current='';
-   window.ORAL_QUESTIONS.forEach((q,i)=>{
-     if(q[0]!==current){current=q[0];qWrap.insertAdjacentHTML('beforeend',`<h4>${current}</h4>`)}
-     qWrap.insertAdjacentHTML('beforeend',`<div class="question-card"><strong>${i+1}. ${q[1]}</strong><br><button class="btn" onclick="toggleAnswer('a${i}')">Prikaži model odgovora</button><div class="answer" id="a${i}">${q[2]}</div></div>`)
-   });
-   qWrap.dataset.built='1'
- }
+ if(qWrap&&!qWrap.dataset.built){let current='';window.ORAL_QUESTIONS.forEach((q,i)=>{if(q[0]!==current){current=q[0];qWrap.insertAdjacentHTML('beforeend',`<h4>${current}</h4>`)}qWrap.insertAdjacentHTML('beforeend',`<div class="question-card"><strong>${i+1}. ${q[1]}</strong><br><button class="btn" onclick="toggleAnswer('a${i}')">Prikaži model odgovora</button><div class="answer" id="a${i}">${q[2]}</div></div>`)});qWrap.dataset.built='1'}
  const sWrap=document.getElementById('scenarios');
- if(sWrap&&!sWrap.dataset.built){
-   window.SCENARIOS.forEach((s,i)=>sWrap.insertAdjacentHTML('beforeend',`<div class="scenario"><strong>Scenarij ${i+1}: ${s[0]}</strong><p>${s[1]}</p><p><em>Pitanja:</em> Što prvo uočavaš? Koji su prioriteti procjene? Kada zoveš liječnika/tim? Što dokumentiraš?</p><button class="btn" onclick="toggleAnswer('s${i}')">Prikaži model</button><div class="answer" id="s${i}">${s[2]}</div></div>`));
-   sWrap.dataset.built='1'
- }
+ if(sWrap&&!sWrap.dataset.built){window.SCENARIOS.forEach((s,i)=>sWrap.insertAdjacentHTML('beforeend',`<div class="scenario"><strong>Scenarij ${i+1}: ${s[0]}</strong><p>${s[1]}</p><p><em>Pitanja:</em> Što prvo uočavaš? Koji su prioriteti procjene? Kada zoveš liječnika/tim? Što dokumentiraš?</p><button class="btn" onclick="toggleAnswer('s${i}')">Prikaži model</button><div class="answer" id="s${i}">${s[2]}</div></div>`));sWrap.dataset.built='1'}
 }
 function toggleAnswer(id){document.getElementById(id)?.classList.toggle('show')}
+
 async function doSearch(){
- const q=document.getElementById('searchInput').value.trim().toLowerCase(); if(!q)return;
+ const q=document.getElementById('searchInput').value.trim().toLowerCase();if(!q)return;
  for(let i=1;i<=10;i++){
-   const t=await (await fetch(`data/lesson-${String(i).padStart(2,'0')}.html`)).text();
-   if(t.toLowerCase().includes(q)){
-     await openLesson(i);
-     const el=[...content.querySelectorAll('p,li,td,h3,h4')].find(x=>x.textContent.toLowerCase().includes(q));
-     if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
-     return
-   }
+   try{const r=await fetch(`data/lesson-${String(i).padStart(2,'0')}.html?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)continue;const t=await r.text();if(t.toLowerCase().includes(q)){await openLesson(i);const el=[...content.querySelectorAll('p,li,td,h3,h4')].find(x=>x.textContent.toLowerCase().includes(q));if(el)el.scrollIntoView({behavior:'smooth',block:'center'});return}}catch(e){}
  }
  alert('Pojam nije pronađen u lekcijama.')
 }
