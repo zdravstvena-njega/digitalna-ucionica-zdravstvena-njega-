@@ -48,9 +48,17 @@ async function loadHtml(path,label='sadržaj'){
 
 async function openLesson(n){
   n=Math.max(1,Math.min(10,n));
-  currentView='lesson-'+n;home.style.display='none';content.innerHTML='<div class="section">Učitavanje lekcije…</div>';closeNav();
+  currentView='lesson-'+n;
+  home.style.display='none';
+  content.innerHTML='<div class="section">Učitavanje lekcije…</div>';
+  closeNav();
   content.innerHTML=await loadHtml(`data/lesson-${String(n).padStart(2,'0')}.html`,`lekciju ${n}`);
-  setActiveLesson(n);wireLesson(n);if(n===10)buildExam();window.scrollTo(0,0);
+  const loadedLesson=content.querySelector('.lesson');
+  if(loadedLesson) loadedLesson.classList.add('active');
+  setActiveLesson(n);
+  wireLesson(n);
+  if(n===10)buildExam();
+  window.scrollTo(0,0);
 }
 async function showAux(kind){
   currentView=kind;home.style.display='none';content.innerHTML='<div class="section">Učitavanje…</div>';closeNav();
