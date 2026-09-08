@@ -1,15 +1,56 @@
 const content=document.getElementById('content');
 const home=document.getElementById('home');
+const sidebar=document.querySelector('.sidebar');
 let currentView='home';
+
+// Mobilna navigacija: gumb u zaglavlju, zatvaranje izbornika i pozadina.
+(function initMobileNav(){
+  const actions=document.querySelector('.top-actions');
+  if(actions && !document.querySelector('.mobile-nav-toggle')){
+    const b=document.createElement('button');
+    b.className='btn mobile-nav-toggle';
+    b.type='button';
+    b.innerHTML='☰ <span>Sadržaj</span>';
+    b.addEventListener('click',openNav);
+    actions.appendChild(b);
+  }
+  if(sidebar && !sidebar.querySelector('.mobile-nav-close')){
+    const c=document.createElement('button');
+    c.className='mobile-nav-close';
+    c.type='button';
+    c.innerHTML='<span>ZN · Sadržaj</span><span>✕</span>';
+    c.addEventListener('click',closeNav);
+    sidebar.prepend(c);
+  }
+  if(!document.querySelector('.nav-backdrop')){
+    const d=document.createElement('div');
+    d.className='nav-backdrop';
+    d.addEventListener('click',closeNav);
+    document.body.appendChild(d);
+  }
+})();
+
+function openNav(){
+  sidebar?.classList.add('open');
+  document.querySelector('.nav-backdrop')?.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeNav(){
+  sidebar?.classList.remove('open');
+  document.querySelector('.nav-backdrop')?.classList.remove('show');
+  document.body.style.overflow='';
+}
 
 function setActiveLesson(n){
   document.querySelectorAll('.lesson-btn[data-lesson]').forEach(x=>x.classList.toggle('active',+x.dataset.lesson===n));
 }
-function showHome(){currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);window.scrollTo(0,0)}
+function showHome(){
+  currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);closeNav();window.scrollTo(0,0)
+}
 function showHeartHome(){showHome()}
 async function openLesson(n){
   n=Math.max(1,Math.min(10,n));
-  currentView='lesson-'+n;home.style.display='none';content.innerHTML='<div class="section">Učitavanje lekcije…</div>';
+  currentView='lesson-'+n;home.style.display='none';content.innerHTML='<div class="section">Učitavanje lekcije…</div>';closeNav();
   const r=await fetch(`data/lesson-${String(n).padStart(2,'0')}.html`);
   content.innerHTML=await r.text();
   setActiveLesson(n);
@@ -18,7 +59,7 @@ async function openLesson(n){
   window.scrollTo(0,0);
 }
 async function showAux(kind){
-  currentView=kind;home.style.display='none';content.innerHTML='<div class="section">Učitavanje…</div>';
+  currentView=kind;home.style.display='none';content.innerHTML='<div class="section">Učitavanje…</div>';closeNav();
   const r=await fetch(`data/${kind}.html`);
   content.innerHTML=await r.text();
   setActiveLesson(0);
@@ -96,4 +137,5 @@ async function doSearch(){
  alert('Pojam nije pronađen u lekcijama.')
 }
 document.getElementById('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
 showHome();
