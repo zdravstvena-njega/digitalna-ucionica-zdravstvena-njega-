@@ -2,25 +2,22 @@
 
 Digitalna učionica za učenike trećeg razreda medicinske škole.
 
-## Aktivna nastavna cjelina
-- **Srce i krvne žile** – 10 detaljnih lekcija
-- stručni tekst i zdravstvena njega
+## Nastavna cjelina: Srce i krvne žile
+- 10 detaljnih i međusobno povezanih lekcija
+- stručni tekst prilagođen razini trećeg razreda medicinske škole
+- tri razine učenja: **Moraš znati**, **Za vrlo dobar / odličan** i **Stručna nadogradnja**
 - originalne medicinske ilustracije i stvarne fotografije opreme JIKS/JIL
-- interaktivni simulatori srčane frekvencije, EKG-a, krvnog tlaka i plućne kongestije
-- kviz prepoznavanja medicinske opreme
+- suvremeni primjeri monitora, ventilatora, infuzijskih pumpi, monitor/defibrilatora i centralnih medicinskih plinova
+- interaktivni simulator srčane frekvencije, EKG ritma, krvnog tlaka i plućne kongestije
+- praktično postavljanje V1–V6, slaganje sustava za primjenu kisika i SBAR komunikacija
+- interaktivno sastavljanje plana zdravstvene njege
+- pet pitanja za samoprovjeru nakon svake lekcije
+- 50 pitanja za usmeni ispit, 10 kliničkih scenarija i vremenski trening odgovora
 - hrvatski multimedijski i stručni izvori
-- 50 pitanja za usmeni ispit i 10 kliničkih scenarija
-- responzivni prikaz i A4 ispis
-
-## Budući moduli
-- Dišni sustav
-- Probavni sustav
-- Mokraćni sustav
-- Živčani sustav
-- Ostale nastavne cjeline
+- responzivni prikaz za mobitel i računalo te A4 ispis
 
 ## Autor
-Digitalnu učionicu osobno razvio **Petar Rajić**.
+Digitalnu učionicu osmislio i razvio **Petar Rajić**.
 
 ## Stručna napomena
-Edukativni materijal ne zamjenjuje lokalne kliničke protokole, liječničku ordinaciju ni procjenu konkretnog bolesnika.
+Edukativni materijal ne zamjenjuje lokalne kliničke protokole, liječničku ordinaciju ni individualnu procjenu bolesnika. U kliničkoj praksi primjenjuju se važeći protokoli ustanove, aktualne stručne smjernice i kompetencije zdravstvenog djelatnika.
