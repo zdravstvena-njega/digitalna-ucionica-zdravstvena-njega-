@@ -4,12 +4,22 @@ const rp=document.createElement('div');rp.className='reading-progress';document.
 const topBtn=document.createElement('button');topBtn.className='back-top';topBtn.type='button';topBtn.setAttribute('aria-label','Na vrh stranice');topBtn.textContent='↑';topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));document.body.appendChild(topBtn);
 let enhanceTimer;
 function slug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,64)}
+function placeExtra(lesson,n,box){
+ const sections=[...lesson.querySelectorAll(':scope > .section')];
+ const nav=lesson.querySelector('.nav-bottom');
+ let anchor=null;
+ if(n===1||n===3||n===5||n===6||n===9)anchor=sections[1]||nav;
+ else if(n===2)anchor=sections[3]||nav;
+ else if(n===4)anchor=sections[2]||nav;
+ else if(n===7)anchor=sections.find(s=>/pravilno mjerenje/i.test(s.querySelector('h3')?.textContent||''))?.nextElementSibling||nav;
+ else if(n===10)anchor=sections[1]||nav;
+ if(anchor)lesson.insertBefore(box,anchor);else if(nav)lesson.insertBefore(box,nav);else lesson.appendChild(box);
+}
 function enhanceLesson(){
  const lesson=content?.querySelector('.lesson.active');if(!lesson)return;
  const n=parseInt((lesson.id||'').replace('lesson-',''),10);if(!n)return;
  if(window.LESSON_EXTRAS?.[n]&&!lesson.querySelector('.lesson-extra')){
-   const box=document.createElement('div');box.className='lesson-extra';box.innerHTML=window.LESSON_EXTRAS[n];
-   const nav=lesson.querySelector('.nav-bottom');if(nav)lesson.insertBefore(box,nav);else lesson.appendChild(box);
+   const box=document.createElement('div');box.className='lesson-extra';box.innerHTML=window.LESSON_EXTRAS[n];placeExtra(lesson,n,box);
  }
  const header=lesson.querySelector('.lesson-header');
  if(header&&!header.querySelector('.lesson-meta')){
