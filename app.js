@@ -17,7 +17,7 @@ let currentView='home';
     const c=document.createElement('button');
     c.className='mobile-nav-close';
     c.type='button';
-    c.innerHTML='<span>ZN · Sadržaj</span><span>✕</span>';
+    c.innerHTML='<span>Zdravstvena njega 3 · Sadržaj</span><span>✕</span>';
     c.addEventListener('click',closeNav);
     sidebar.prepend(c);
   }
@@ -42,7 +42,7 @@ async function loadHtml(path,label='sadržaj'){
     return await r.text();
   }catch(e){
     console.error('Greška pri učitavanju:',path,e);
-    return `<div class="section"><div class="callout danger"><strong>Nije moguće učitati ${label}</strong>Provjeri internetsku vezu i osvježi stranicu. Ako se problem ponavlja, nastavnik treba provjeriti GitHub Pages datoteku: <code>${path}</code>.</div></div>`;
+    return `<div class="section"><div class="callout danger"><strong>Nije moguće učitati ${label}</strong>Provjeri internetsku vezu i osvježi stranicu. Ako se problem ponavlja, pokušaj ponovno otvoriti početnu stranicu.</div></div>`;
   }
 }
 
@@ -66,7 +66,7 @@ function injectLessonVisual(n){
   fig.style.background='#fff';
   fig.style.border='1px solid #d9e2ec';
   fig.style.borderRadius='16px';
-  fig.innerHTML=`<img src="${v[0]}?v=2" alt="${v[1]}" loading="eager" style="display:block;width:100%;height:auto;border-radius:10px"><figcaption style="margin-top:8px;color:#64748b;font-size:.9rem;text-align:center">${v[2]} · Digitalna učionica – Zdravstvena njega</figcaption>`;
+  fig.innerHTML=`<img src="${v[0]}?v=3" alt="${v[1]}" loading="eager" style="display:block;width:100%;height:auto;border-radius:10px"><figcaption style="margin-top:8px;color:#64748b;font-size:.9rem;text-align:center">${v[2]} · Zdravstvena njega 3</figcaption>`;
   header.insertAdjacentElement('afterend',fig);
 }
 
@@ -107,7 +107,7 @@ const simText={
  acsStage:["Stabilan plak sužava koronarnu arteriju.","Ruptura/erozija izlaže trombogeni sadržaj.","Nastaje tromb koji može djelomično ili potpuno zatvoriti lumen.","Smanjen protok dovodi do ishemije, a produljena ishemija do nekroze."],
  edemaStage:["Lijeva klijetka ne prazni krv dovoljno učinkovito.","Raste tlak u lijevom atriju i plućnim venama/kapilarama.","Tekućina prelazi u plućni intersticij → dispneja i smanjena podajnost pluća.","Tekućina može ući u alveole → teška hipoksemija, hropci i akutni plućni edem."],
  measureStage:["Bolesnik miruje prije mjerenja.","Pravilno sjedi, ruka je poduprta u visini srca.","Manžeta je odgovarajuće veličine i pravilno postavljena.","Mjerenje se ponavlja i procjenjuje prosjek/trend."],
- perfusionStage:["Srce izbacuje manje krvi nego što je potrebno tkivima.","Aktiviraju se simpatički i neurohormonalni mehanizmi: tahikardija, vazokonstrikcija i zadržavanje tekućine pokušavaju održati perfuziju.","Ako kompenzacija nije dovoljna, mozak, bubrezi i periferna tkiva dobivaju premalo krvi: konfuzija, oligourija, hladna periferija i slab puls.","Teška i trajna hipoperfuzija može prijeći u kardiogeni šok s hipotenzijom, poremećajem svijesti i progresivnim zatajenjem organa."],
+ perfusionStage:["Srce izbacuje manje krvi nego što je potrebno tkivima.","Aktiviraju se simpatički i neurohormonalni mehanizmi: tahikardija, vazokonstrikcija i zadržavanje tekućine pokušavaju održati perfuziju.","Ako kompenzacija nije dovoljna, mozak, bubrezi i periferna tkiva dobivaju premalo krvi: konfuzija, oligurija, hladna periferija i slab puls.","Teška i trajna hipoperfuzija može prijeći u kardiogeni šok s hipotenzijom, poremećajem svijesti i progresivnim zatajenjem organa."],
  dvtStage:["Tromb se formira u dubokoj veni, najčešće donjeg ekstremiteta.","Dio tromba može se odvojiti od stijenke vene.","Embolus putuje venskim sustavom kroz desno srce prema plućnim arterijama.","Začepljenje plućne arterije uzrokuje plućnu emboliju: naglu dispneju, bol, tahikardiju, hipoksemiju, a kod masivne PE i šok/sinkopu."]
 };
 function simStep(id,idx,btn){const el=document.getElementById(id);if(!el)return;el.textContent=(simText[id]||[])[idx]||'';btn.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
