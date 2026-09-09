@@ -1,9 +1,16 @@
-# Digitalna učionica – Zdravstvena njega
+# Zdravstvena njega 3 – Digitalna učionica
 
-Glavna platforma za nastavne cjeline Zdravstvene njege.
+Digitalna učionica za učenike trećeg razreda medicinske škole.
 
-## Aktivni modul
-- **Srce i krvne žile** – 10 detaljnih lekcija, interaktivno ponavljanje, 40+ usmenih pitanja, 8 kliničkih scenarija, nastavnički dio i A4 ispis.
+## Aktivna nastavna cjelina
+- **Srce i krvne žile** – 10 detaljnih lekcija
+- stručni tekst i zdravstvena njega
+- originalne medicinske ilustracije i stvarne fotografije opreme JIKS/JIL
+- interaktivni simulatori srčane frekvencije, EKG-a, krvnog tlaka i plućne kongestije
+- kviz prepoznavanja medicinske opreme
+- hrvatski multimedijski i stručni izvori
+- 50 pitanja za usmeni ispit i 10 kliničkih scenarija
+- responzivni prikaz i A4 ispis
 
 ## Budući moduli
 - Dišni sustav
@@ -12,8 +19,8 @@ Glavna platforma za nastavne cjeline Zdravstvene njege.
 - Živčani sustav
 - Ostale nastavne cjeline
 
-## Objavljivanje
-Projekt je statička web-stranica i namijenjen je objavi preko GitHub Pages.
+## Autor
+Digitalnu učionicu osobno razvio **Petar Rajić**.
 
 ## Stručna napomena
 Edukativni materijal ne zamjenjuje lokalne kliničke protokole, liječničku ordinaciju ni procjenu konkretnog bolesnika.
