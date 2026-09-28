@@ -2,6 +2,7 @@ const content=document.getElementById('content');
 const home=document.getElementById('home');
 const sidebar=document.querySelector('.sidebar');
 let currentView='home';
+let routing=false;
 
 (function initMobileNav(){
   const actions=document.querySelector('.top-actions');
@@ -17,7 +18,7 @@ let currentView='home';
     const c=document.createElement('button');
     c.className='mobile-nav-close';
     c.type='button';
-    c.innerHTML='<span>Zdravstvena njega 3 · Sadržaj</span><span>✕</span>';
+    c.innerHTML='<span>Zdravstvena njega 3 · Srce i krvne žile</span><span>✕</span>';
     c.addEventListener('click',closeNav);
     sidebar.prepend(c);
   }
@@ -32,7 +33,18 @@ let currentView='home';
 function openNav(){sidebar?.classList.add('open');document.querySelector('.nav-backdrop')?.classList.add('show');document.body.style.overflow='hidden'}
 function closeNav(){sidebar?.classList.remove('open');document.querySelector('.nav-backdrop')?.classList.remove('show');document.body.style.overflow=''}
 function setActiveLesson(n){document.querySelectorAll('.lesson-btn[data-lesson]').forEach(x=>x.classList.toggle('active',+x.dataset.lesson===n))}
-function showHome(){currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);closeNav();window.scrollTo(0,0)}
+function setRoute(query='',replace=false){
+  if(routing)return;
+  const target=location.pathname+(query?('?'+query):'');
+  if(location.pathname+location.search===target)return;
+  history[replace?'replaceState':'pushState']({},'',target);
+}
+function showHome(opts={}){
+  currentView='home';content.innerHTML='';home.style.display='block';setActiveLesson(0);closeNav();
+  document.title='Srce i krvne žile · Zdravstvena njega 3';
+  if(opts.history!==false)setRoute('');
+  if(opts.scroll!==false)window.scrollTo(0,0)
+}
 function showHeartHome(){showHome()}
 
 async function loadHtml(path,label='sadržaj'){
@@ -42,7 +54,7 @@ async function loadHtml(path,label='sadržaj'){
     return await r.text();
   }catch(e){
     console.error('Greška pri učitavanju:',path,e);
-    return `<div class="section"><div class="callout danger"><strong>Nije moguće učitati ${label}</strong>Provjeri internetsku vezu i osvježi stranicu. Ako se problem ponavlja, pokušaj ponovno otvoriti početnu stranicu.</div></div>`;
+    return `<div class="section"><div class="callout danger"><strong>Nije moguće učitati ${label}</strong>Provjeri internetsku vezu i osvježi stranicu. Ako se problem ponavlja, vrati se na početak poglavlja.</div></div>`;
   }
 }
 
@@ -70,12 +82,13 @@ function injectLessonVisual(n){
   header.insertAdjacentElement('afterend',fig);
 }
 
-async function openLesson(n){
+async function openLesson(n,opts={}){
   n=Math.max(1,Math.min(10,n));
   currentView='lesson-'+n;
   home.style.display='none';
   content.innerHTML='<div class="section">Učitavanje lekcije…</div>';
   closeNav();
+  if(opts.history!==false)setRoute(`lekcija=${n}`);
   content.innerHTML=await loadHtml(`data/lesson-${String(n).padStart(2,'0')}.html`,`lekciju ${n}`);
   const loadedLesson=content.querySelector('.lesson');
   if(loadedLesson) loadedLesson.classList.add('active');
@@ -83,11 +96,16 @@ async function openLesson(n){
   setActiveLesson(n);
   wireLesson(n);
   if(n===10)buildExam();
-  window.scrollTo(0,0);
+  const h=content.querySelector('h2');
+  document.title=(h?h.textContent.trim():`Lekcija ${n}`)+' · Zdravstvena njega 3';
+  if(opts.scroll!==false)window.scrollTo(0,0);
 }
-async function showAux(kind){
+async function showAux(kind,opts={}){
   currentView=kind;home.style.display='none';content.innerHTML='<div class="section">Učitavanje…</div>';closeNav();
-  content.innerHTML=await loadHtml(`data/${kind}.html`,kind);setActiveLesson(0);window.scrollTo(0,0)
+  if(opts.history!==false)setRoute(`prikaz=${encodeURIComponent(kind)}`);
+  content.innerHTML=await loadHtml(`data/${kind}.html`,kind);setActiveLesson(0);
+  document.title=(kind==='glossary'?'Pojmovnik':'Izvori i licence')+' · Zdravstvena njega 3';
+  if(opts.scroll!==false)window.scrollTo(0,0)
 }
 function wireLesson(n){
  const c=content.querySelector('.done-check');
@@ -97,7 +115,7 @@ function wireLesson(n){
 }
 document.querySelectorAll('.lesson-btn[data-lesson]').forEach(b=>b.addEventListener('click',()=>openLesson(+b.dataset.lesson)));
 
-function progress(){let c=0;for(let i=1;i<=10;i++)if(localStorage.getItem('zn-heart-done-'+i)==='1')c++;document.getElementById('progressBar').style.width=(c*10)+'%';document.getElementById('progressText').textContent=c+' / 10'}
+function progress(){let c=0;for(let i=1;i<=10;i++)if(localStorage.getItem('zn-heart-done-'+i)==='1')c++;const bar=document.getElementById('progressBar'),txt=document.getElementById('progressText');if(bar)bar.style.width=(c*10)+'%';if(txt)txt.textContent=c+' / 10'}
 progress();
 
 const simText={
@@ -126,8 +144,21 @@ async function doSearch(){
  for(let i=1;i<=10;i++){
    try{const r=await fetch(`data/lesson-${String(i).padStart(2,'0')}.html?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)continue;const t=await r.text();if(t.toLowerCase().includes(q)){await openLesson(i);const el=[...content.querySelectorAll('p,li,td,h3,h4')].find(x=>x.textContent.toLowerCase().includes(q));if(el)el.scrollIntoView({behavior:'smooth',block:'center'});return}}catch(e){}
  }
- alert('Pojam nije pronađen u lekcijama.')
+ alert('Pojam nije pronađen u ovom poglavlju.')
 }
-document.getElementById('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
+document.getElementById('searchInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
-showHome();
+
+async function routeFromUrl(){
+  routing=true;
+  const p=new URLSearchParams(location.search);
+  const lesson=parseInt(p.get('lekcija'),10);
+  const view=p.get('prikaz');
+  try{
+    if(Number.isFinite(lesson)&&lesson>=1&&lesson<=10)await openLesson(lesson,{history:false,scroll:true});
+    else if(view==='glossary'||view==='sources')await showAux(view,{history:false,scroll:true});
+    else showHome({history:false,scroll:true});
+  }finally{routing=false}
+}
+window.addEventListener('popstate',routeFromUrl);
+routeFromUrl();
