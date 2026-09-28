@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0f766e">
-<meta name="description" content="Zdravstvena njega 3 – Srce i krvne žile. Digitalno poglavlje za učenike trećeg razreda medicinske škole.">
+<meta name="description" content="Zdravstvena njega 3 – Srce i krvne žile. Cjelovito digitalno poglavlje za učenike trećeg razreda medicinske škole.">
 <title>Srce i krvne žile · Zdravstvena njega 3</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhancements.css">
@@ -24,19 +24,19 @@
 <aside class="sidebar">
 <h3>Aktivno poglavlje</h3>
 <button class="module-btn" onclick="showHeartHome()">❤️ Srce i krvne žile</button>
-<div class="chapter-only-note">Svako nastavno poglavlje ima vlastitu stranicu. Ovdje se nalazi samo sadržaj cjeline <strong>Srce i krvne žile</strong>.</div>
+<div class="chapter-only-note">Poglavlje je organizirano kao klinički put: <strong>anamneza → promatranje → dijagnostika → liječenje → zdravstvena njega → edukacija i otpust</strong>.</div>
 <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
 <h3>Lekcije</h3>
-<button class="lesson-btn" data-lesson="1">01 Srce i krvotok</button>
-<button class="lesson-btn" data-lesson="2">02 Promatranje bolesnika</button>
-<button class="lesson-btn" data-lesson="3">03 Dijagnostika i EKG</button>
-<button class="lesson-btn" data-lesson="4">04 Sigurna primjena terapije</button>
-<button class="lesson-btn" data-lesson="5">05 Koronarna bolest i akutni koronarni sindrom</button>
-<button class="lesson-btn" data-lesson="6">06 Srčano popuštanje i plućni edem</button>
-<button class="lesson-btn" data-lesson="7">07 Krvni tlak, vene i ostala vaskularna stanja</button>
-<button class="lesson-btn" data-lesson="8">08 Edukacija bolesnika i plan zdravstvene njege</button>
-<button class="lesson-btn" data-lesson="9">09 Interaktivno ponavljanje</button>
-<button class="lesson-btn" data-lesson="10">10 Provjeri znanje – priprema za usmeni ispit</button>
+<button class="lesson-btn" data-lesson="1">01 Uvod: srce, krvotok i čimbenici rizika</button>
+<button class="lesson-btn" data-lesson="2">02 Anamneza i promatranje bolesnika</button>
+<button class="lesson-btn" data-lesson="3">03 Dijagnostika, EKG i monitoring</button>
+<button class="lesson-btn" data-lesson="4">04 Liječenje i sigurna primjena terapije</button>
+<button class="lesson-btn" data-lesson="5">05 Akutni infarkt miokarda / ACS</button>
+<button class="lesson-btn" data-lesson="6">06 Dekomp. srca i plućni edem</button>
+<button class="lesson-btn" data-lesson="7">07 Povišen krvni tlak / hipertenzija</button>
+<button class="lesson-btn" data-lesson="8">08 Zdravstvena njega i edukacija pri otpustu</button>
+<button class="lesson-btn" data-lesson="9">09 Interaktivni klinički laboratorij</button>
+<button class="lesson-btn" data-lesson="10">10 Provjeri znanje – usmeni i scenariji</button>
 <div style="margin-top:14px"><small>Napredak poglavlja</small><div class="progress"><div id="progressBar"></div></div><strong id="progressText">0 / 10</strong></div>
 <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
 <button class="lesson-btn" onclick="showAux('glossary')">Pojmovnik</button>
@@ -47,45 +47,46 @@
 <div class="chapter-breadcrumb"><a href="index.html">Zdravstvena njega 3</a><span>›</span><strong>Srce i krvne žile</strong></div>
 <div class="hero">
 <div class="eyebrow">POGLAVLJE 01 · SRCE I KRVNE ŽILE</div>
-<h1>Od temelja do kliničkog razmišljanja.</h1>
-<p>Jedno cjelovito poglavlje za treći razred medicinske škole: anatomija i fiziologija, sustavno promatranje bolesnika, JIKS/JIL i oprema, EKG, terapija, akutni koronarni sindrom, srčano popuštanje, hipertenzija, vaskularna stanja, zdravstvena njega i provjera znanja.</p>
+<h1>Od prvog razgovora s bolesnikom do sigurne skrbi i otpusta.</h1>
+<p>Ovo poglavlje prati način na koji medicinska sestra/tehničar stvarno razmišlja u praksi: najprije uzima podatke i promatra bolesnika, zatim povezuje simptome s dijagnostikom i liječenjem, provodi zdravstvenu njegu, prati učinak terapije i priprema bolesnika za siguran otpust.</p>
 <div class="hero-grid">
-<div class="hero-stat"><strong>10</strong><br/>lekcija u jasnom slijedu</div>
-<div class="hero-stat"><strong>50 + 10</strong><br/>usmenih pitanja i scenarija</div>
-<div class="hero-stat"><strong>INTERAKTIVNO</strong><br/>puls, EKG, tlak, oprema i odluke</div>
+<div class="hero-stat"><strong>4 KLJUČNE TEME</strong><br/>uvod · AIM · dekompenzacija · hipertenzija</div>
+<div class="hero-stat"><strong>10 LEKCIJA</strong><br/>od anatomije do kliničkih scenarija</div>
+<div class="hero-stat"><strong>AKTIVNO UČENJE</strong><br/>simulatori · oprema · odluke · samoprovjera</div>
 </div></div>
 
 <div class="section">
-<h3>Put učenja</h3>
-<p>Gradivo je podijeljeno u tri cjeline kako bi učenik najprije razumio temelj, zatim bolesti i hitna stanja, a na kraju povezao zdravstvenu njegu i provjerio znanje.</p>
+<h3>Klinički put kroz poglavlje</h3>
+<p>Umjesto učenja nepovezanih činjenica, sadržaj je organiziran oko pitanja koja će učenik susretati na praksi.</p>
 <div class="learning-path">
-<div class="path-card"><div class="path-no">1</div><h4>Temelji i procjena</h4><p>Lekcije 01–04: srce i krvotok, promatranje bolesnika, JIKS/JIL, EKG, dijagnostika i sigurna primjena terapije.</p><button class="btn primary" onclick="openLesson(1)">Kreni od temelja</button></div>
-<div class="path-card"><div class="path-no">2</div><h4>Bolesti i hitna stanja</h4><p>Lekcije 05–07: ACS/AIM, srčano popuštanje i plućni edem, hipertenzija, DVT i plućna embolija.</p><button class="btn primary" onclick="openLesson(5)">Otvori bolesti</button></div>
-<div class="path-card"><div class="path-no">3</div><h4>Zdravstvena njega i provjera</h4><p>Lekcije 08–10: planovi zdravstvene njege, interaktivno ponavljanje, usmeni ispit i klinički scenariji.</p><button class="btn" onclick="openLesson(8)">Vježbaj i provjeri</button></div>
+<div class="path-card"><div class="path-no">1</div><h4>Upoznaj bolesnika</h4><p>Anamneza, čimbenici rizika, glavne tegobe, promatranje, vitalni znakovi, bol, dispneja, edemi i diureza.</p><button class="btn primary" onclick="openLesson(2)">Anamneza i promatranje</button></div>
+<div class="path-card"><div class="path-no">2</div><h4>Potvrdi što se događa</h4><p>12-kanalni EKG, monitoring, hs-troponin, laboratorij, RTG, ehokardiografija i koronarografija.</p><button class="btn primary" onclick="openLesson(3)">Dijagnostika</button></div>
+<div class="path-card"><div class="path-no">3</div><h4>Provodi sigurnu skrb</h4><p>Ordinirana terapija, praćenje učinka, komplikacije, plan zdravstvene njege, dokumentiranje i edukacija pri otpustu.</p><button class="btn primary" onclick="openLesson(8)">Njega i otpust</button></div>
 </div>
 </div>
-
-<div class="home-feature-strip"><div><strong>📖 Stručni tekst</strong>Sadržaj prilagođen učenicima trećeg razreda, s jasnim razinama važnosti gradiva.</div><div><strong>🫀 Simulatori</strong>Frekvencija srca, ritam, krvni tlak, plućna kongestija i druge interaktivne vježbe.</div><div><strong>🩺 Oprema iz prakse</strong>Stvarne fotografije monitora, ventilatora, pumpi, defibrilatora i medicinskih plinova.</div><div><strong>🎓 Aktivno učenje</strong>Samoprovjere, SBAR, V1–V6, scenariji, video i priprema za usmeni ispit.</div></div>
 
 <div class="section">
-<h3>Bolesti i klinička stanja – otvori izravno</h3>
+<h3>Glavne nastavne cjeline</h3>
 <div class="grid2">
-<div class="card"><h4>🫀 Koronarna bolest, ACS i akutni infarkt miokarda</h4><p>Ateroskleroza, STEMI/NSTEMI, bol u prsima, EKG i hs-troponin, PCI, komplikacije i zdravstvena njega.</p><button class="btn primary" onclick="openLesson(5)">Otvori AIM / ACS</button></div>
-<div class="card"><h4>💨 Srčano popuštanje i plućni edem</h4><p>Kongestija, hipoperfuzija, simptomi, liječenje, monitoring i hitni postupci kod plućnog edema.</p><button class="btn primary" onclick="openLesson(6)">Otvori srčano popuštanje</button></div>
-<div class="card"><h4>🩺 Arterijska hipertenzija</h4><p>Pravilno mjerenje, klasifikacija, oštećenje ciljnih organa, liječenje i hipertenzivna emergencija.</p><button class="btn primary" onclick="openLesson(7)">Otvori hipertenziju</button></div>
-<div class="card"><h4>🦵 Venske bolesti, DVT i plućna embolija</h4><p>Venska insuficijencija, duboka venska tromboza, plućna embolija i sigurnosni prioriteti.</p><button class="btn" onclick="openLesson(7)">Otvori vaskularna stanja</button></div>
+<div class="card"><h4>🫀 Uvod i čimbenici rizika</h4><p>Srce i krvotok, koronarna cirkulacija, prevencija, nasljeđe i promjenjivi čimbenici rizika. Temelj za razumijevanje svih kasnijih bolesti.</p><button class="btn" onclick="openLesson(1)">Otvori uvod</button></div>
+<div class="card"><h4>🚨 Akutni infarkt miokarda</h4><p>Ateroskleroza i tromb, tipični i atipični simptomi, EKG i troponin, reperfuzija, komplikacije, zdravstvena njega i rehabilitacija.</p><button class="btn primary" onclick="openLesson(5)">Otvori AIM / ACS</button></div>
+<div class="card"><h4>💨 Dekomp. srca i plućni edem</h4><p>Kongestija i hipoperfuzija, dispneja i ortopneja, edemi, dijagnostika, diuretici, monitoring i hitni postupci kod plućnog edema.</p><button class="btn primary" onclick="openLesson(6)">Otvori dekompenzaciju</button></div>
+<div class="card"><h4>🩺 Povišen krvni tlak / hipertenzija</h4><p>Pravilno mjerenje, čimbenici rizika, oštećenje ciljnih organa, liječenje, samokontrola i prepoznavanje hipertenzivne emergencije.</p><button class="btn primary" onclick="openLesson(7)">Otvori hipertenziju</button></div>
 </div>
 </div>
+
+<div class="home-feature-strip"><div><strong>🧑‍⚕️ Anamneza</strong>Aktualne tegobe, ranije bolesti, terapija, alergije, navike, obiteljska anamneza i čimbenici rizika.</div><div><strong>👁 Promatranje</strong>Svijest, koža, disanje, bol, puls, krvni tlak, SpO₂, perfuzija, edemi i izlučevine.</div><div><strong>🔬 Dijagnostika</strong>EKG, monitoring, troponin, laboratorij, RTG, ehokardiografija i invazivna dijagnostika.</div><div><strong>📋 Njega i otpust</strong>Plan njege, sigurnost lijekova, samokontrola, rehabilitacija, crvene zastavice i kontinuitet skrbi.</div></div>
 
 <div class="section home-interactive-callout">
-<h3>Interaktivni laboratorij</h3>
-<p>Učenik ne čita samo tekst: mijenja frekvenciju srca, postavlja prekordijalne elektrode, prepoznaje JIL opremu, slaže sustav za kisik, vježba SBAR i sastavlja plan zdravstvene njege.</p>
-<div class="grid3"><button class="btn primary" onclick="openLesson(1)">♥ Simulator pulsa</button><button class="btn" onclick="openLesson(2)">🩺 JIKS/JIL i oprema</button><button class="btn" onclick="openLesson(9)">⚡ Otvori laboratorij</button></div>
+<h3>Interaktivni klinički laboratorij</h3>
+<p>Učenik može mijenjati frekvenciju srca, promatrati EKG, vježbati V1–V6, procjenjivati krvni tlak, pratiti razvoj plućne kongestije, prepoznavati opremu i rješavati kratke kliničke odluke.</p>
+<div class="grid3"><button class="btn primary" onclick="openLesson(1)">♥ Puls i krvotok</button><button class="btn" onclick="openLesson(3)">⚡ EKG i monitoring</button><button class="btn" onclick="openLesson(9)">🎯 Otvori laboratorij</button></div>
 </div>
 
 <div class="section">
-<h3>Kako koristiti ovo poglavlje</h3>
-<p>Preporučeni redoslijed je 01 → 10, ali svaka lekcija ima vlastitu izravnu poveznicu u adresnoj traci. To omogućuje da učenik ili nastavnik spremi i podijeli točno određenu lekciju, a povratak na ovu početnu stranicu poglavlja uvijek je dostupan iz gornje navigacije.</p>
+<h3>Kako učiti ovo poglavlje</h3>
+<p>Za svaki klinički problem slijedi isti obrazac: <strong>što je bolest → koji su čimbenici rizika i uzroci → što bolesnik navodi u anamnezi → što sestra promatra → kako se postavlja dijagnoza → kako se liječi → što sestra provodi i prati → što bolesnik mora znati prije otpusta</strong>. Taj obrazac koristit će se i u budućim poglavljima digitalne učionice.</p>
+<div class="callout info"><strong>Za učenika trećeg razreda</strong>Najvažnije nije zapamtiti svaku pojedinost iz kardiologije. Važno je sigurno prepoznati bolesnikove potrebe, razumjeti osnovni mehanizam bolesti, pravilno izmjeriti i dokumentirati podatke, provesti ordinirano, prepoznati pogoršanje i znati kada odmah zatražiti pomoć.</div>
 </div>
 </section>
 <div id="content"></div>
