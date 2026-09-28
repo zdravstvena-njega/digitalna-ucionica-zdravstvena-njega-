@@ -1,6 +1,6 @@
 (()=>{
 const content=document.getElementById('content');
-const SOURCE='Nastavna prezentacija / autorov materijal';
+const SOURCE='Nastavna ilustracija / autorov materijal';
 const NEW_EQUIPMENT=[
  {n:'Monitor bolesnika',d:'Prikazuje EKG, puls, SpO₂, krvni tlak i druge parametre. Učenik treba prepoznati uređaj, provjeriti kvalitetu signala i uvijek usporediti alarm s kliničkim stanjem bolesnika.',img:'assets/monitor-bolesnika.webp'},
  {n:'Infuzijska / štrcaljkasta pumpa',d:'Omogućuje preciznu primjenu lijekova i infuzija. Provjeravaju se lijek, koncentracija, brzina, venski put i alarmi.',img:'assets/infuzijska-pumpa.webp'},
@@ -17,7 +17,7 @@ function setEquipmentData(){
 }
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function fullGallery(){
- return `<div class="practice-reference"><strong>Oprema povezana s praksom</strong><p>Galerija koristi novi komplet nastavnih fotografija JIL/JIKS opreme. Cilj je prepoznati uređaj, njegovu osnovnu svrhu i sigurnosnu logiku; model na praksi može se razlikovati.</p></div><div class="real-modern-gallery">${NEW_EQUIPMENT.map((e,i)=>`<figure class="modern-device"><button class="photo-button" type="button" onclick="openPhoto(${i})" aria-label="Uvećaj fotografiju: ${esc(e.n)}"><img src="${e.img}" alt="${esc(e.n)}" loading="lazy"></button><figcaption><strong>${esc(e.n)}</strong><p>${esc(e.d)}</p><small>${esc(e.lic)}</small></figcaption></figure>`).join('')}</div>`;
+ return `<div class="practice-reference"><strong>Oprema povezana s praksom</strong><p>Galerija koristi novi komplet nastavnih fotografija JIL/JIKS opreme. Cilj je prepoznati uređaj, njegovu osnovnu svrhu i sigurnosnu logiku; model na praksi može se razlikovati.</p></div><div class="real-modern-gallery">${NEW_EQUIPMENT.map((e,i)=>`<figure class="modern-device"${i===0?' data-device="ge"':''}><button class="photo-button" type="button" onclick="openPhoto(${i})" aria-label="Uvećaj fotografiju: ${esc(e.n)}"><img src="${e.img}" alt="${esc(e.n)}" loading="lazy"></button><figcaption><strong>${esc(e.n)}</strong><p>${esc(e.d)}</p><small>${esc(e.lic)}</small></figcaption></figure>`).join('')}</div>`;
 }
 function replaceGallery(lesson){
  const modern=lesson.querySelector('.real-modern-gallery');
@@ -56,7 +56,7 @@ function fixLesson2(){
  refreshQuiz(lesson);
 }
 let timer;
-function run(){clearTimeout(timer);timer=setTimeout(fixLesson2,120);}
+function run(){clearTimeout(timer);timer=setTimeout(fixLesson2,40);}
 setEquipmentData();
 if(content)new MutationObserver(run).observe(content,{childList:true,subtree:true});
 run();
