@@ -4,98 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0f766e">
-<meta name="description" content="Zdravstvena njega 3 – digitalna učionica za učenike trećeg razreda medicinske škole. Nastavna cjelina: Srce i krvne žile.">
-<title>Zdravstvena njega 3 · Srce i krvne žile</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="enhancements.css">
-<link rel="stylesheet" href="final-2026.css">
-<link rel="stylesheet" href="final-fixes.css">
+<meta name="description" content="Zdravstvena njega 3 – moderna digitalna učionica za učenike trećeg razreda medicinske škole. Svako nastavno poglavlje otvara se na zasebnoj stranici.">
+<title>Zdravstvena njega 3 · Digitalna učionica</title>
+<link rel="icon" href="assets/zn3-icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="portal.css">
 </head>
 <body>
-<header class="topbar">
-<div class="topbar-inner">
-<div class="brand">Zdravstvena njega 3<small>DIGITALNA UČIONICA · 3. RAZRED MEDICINSKE ŠKOLE</small></div>
-<div class="search"><input id="searchInput" placeholder="Pretraži ovu učionicu…" aria-label="Pretraži učionicu"><button class="btn" onclick="doSearch()">Traži</button></div>
-<div class="top-actions"><button class="btn" onclick="window.print()">🖨 Ispis</button><button class="btn" onclick="showHome()">Početna</button></div>
+<header class="portal-top">
+<div class="portal-top-inner">
+<a class="portal-brand" href="index.html" aria-label="Zdravstvena njega 3 – početna">
+<span class="portal-mark">♥</span>
+<span><strong>Zdravstvena njega 3</strong><span>DIGITALNA UČIONICA · 3. RAZRED MEDICINSKE ŠKOLE</span></span>
+</a>
+<div class="portal-chip">Nastavna poglavlja</div>
 </div>
 </header>
-<div class="layout">
-<aside class="sidebar">
-<h3>Nastavna cjelina</h3>
-<button class="module-btn" onclick="showHeartHome()">❤️ Srce i krvne žile</button>
-<button class="module-btn disabled">🫁 Dišni sustav · uskoro</button>
-<button class="module-btn disabled">🍽 Probavni sustav · uskoro</button>
-<button class="module-btn disabled">💧 Mokraćni sustav · uskoro</button>
-<button class="module-btn disabled">🧠 Živčani sustav · uskoro</button>
-<hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
-<h3>Lekcije – Srce i krvne žile</h3>
-<button class="lesson-btn" data-lesson="1">01 Srce i krvotok</button>
-<button class="lesson-btn" data-lesson="2">02 Promatranje bolesnika</button>
-<button class="lesson-btn" data-lesson="3">03 Dijagnostika i EKG</button>
-<button class="lesson-btn" data-lesson="4">04 Sigurna primjena terapije</button>
-<button class="lesson-btn" data-lesson="5">05 Koronarna bolest i akutni koronarni sindrom</button>
-<button class="lesson-btn" data-lesson="6">06 Srčano popuštanje i plućni edem</button>
-<button class="lesson-btn" data-lesson="7">07 Krvni tlak, vene i ostala vaskularna stanja</button>
-<button class="lesson-btn" data-lesson="8">08 Edukacija bolesnika i plan zdravstvene njege</button>
-<button class="lesson-btn" data-lesson="9">09 Interaktivno ponavljanje</button>
-<button class="lesson-btn" data-lesson="10">10 Provjeri znanje – priprema za usmeni ispit</button>
-<div style="margin-top:14px"><small>Napredak</small><div class="progress"><div id="progressBar"></div></div><strong id="progressText">0 / 10</strong></div>
-<hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
-<button class="lesson-btn" onclick="showAux('glossary')">Pojmovnik</button>
-<button class="lesson-btn" onclick="showAux('sources')">Izvori, licence i napomene</button>
+<main class="portal">
+<section class="portal-hero">
+<div class="hero-copy">
+<div class="eyebrow">DIGITALNA UČIONICA · ZDRAVSTVENA NJEGA 3</div>
+<h1>Uči. Poveži.<br><span>Primijeni.</span></h1>
+<p>Svako nastavno poglavlje ima vlastitu stranicu, sadržaj, interaktivne vježbe i praćenje napretka. Tako učionica ostaje pregledna i može se jednostavno širiti novim cjelinama tijekom školske godine.</p>
+<div class="portal-actions">
+<a class="pbtn primary" href="srce-i-krvne-zile.html">Otvori Srce i krvne žile →</a>
+<a class="pbtn secondary" id="resumeCourse" href="srce-i-krvne-zile.html?lekcija=1">Započni učenje →</a>
+</div>
+</div>
+<aside class="hero-progress" aria-label="Napredak u aktivnom poglavlju">
+<small>NAPREDAK · SRCE I KRVNE ŽILE</small>
+<strong id="courseProgressCount">0%</strong>
+<div class="progress-track"><div class="progress-fill" id="courseProgress"></div></div>
+<div class="progress-note" id="courseProgressNote">Učitavanje napretka…</div>
 </aside>
-<main>
-<section id="home">
-<div class="hero">
-<div class="eyebrow">ZDRAVSTVENA NJEGA 3 · 3. RAZRED MEDICINSKE ŠKOLE</div>
-<h1>Uči. Poveži. Primijeni.</h1>
-<p>Digitalna učionica povezuje stručni tekst, suvremene smjernice, zdravstvenu njegu, stvarnu medicinsku opremu, hrvatske multimedijske sadržaje, interaktivne simulacije, kliničke scenarije i pripremu za usmeno vrednovanje.</p>
-<div class="hero-grid">
-<div class="hero-stat"><strong>10</strong><br/>opsežnih i povezanih lekcija</div>
-<div class="hero-stat"><strong>50 + 10</strong><br/>usmenih pitanja i kliničkih scenarija</div>
-<div class="hero-stat"><strong>INTERAKTIVNO</strong><br/>puls, EKG, tlak, kongestija, oprema i kliničke odluke</div>
-</div></div>
-<div class="home-feature-strip"><div><strong>📖 Digitalni udžbenik</strong>Strukturiran stručni tekst, zdravstvena njega i kliničke poveznice.</div><div><strong>🫀 Interaktivni simulatori</strong>Promijeni frekvenciju srca, ritam, krvni tlak i stupanj kongestije te odmah vidi učinak.</div><div><strong>🩺 Stvarna medicinska oprema</strong>Fotografije monitora, ventilatora, pumpi, defibrilatora i medicinskih plinova s navedenim izvorima.</div><div><strong>🎓 Aktivno učenje</strong>Samoprovjere, scenariji, animacije, video, pitanja za usmeni ispit i praćenje napretka.</div></div>
-
-<div class="section">
-<h3>Srce i krvne žile – uči izravno</h3>
-<p>Bolesti i klinička stanja obrađena su kroz istu logiku: definicija → uzroci i čimbenici rizika → patofiziologija → klinička slika → dijagnostika → liječenje → zdravstvena njega → komplikacije → edukacija bolesnika → provjera znanja.</p>
-<div class="grid2">
-<div class="card"><h4>🫀 Koronarna bolest, ACS i akutni infarkt miokarda</h4><p>Ateroskleroza, STEMI/NSTEMI, bol u prsima, EKG i hs-troponin, PCI, komplikacije i zdravstvena njega od prvog kontakta do otpusta.</p><button class="btn primary" onclick="openLesson(5)">Otvori AIM / ACS</button></div>
-<div class="card"><h4>💨 Srčano popuštanje, dekompenzacija i plućni edem</h4><p>Aktualna ESC 2026 klasifikacija kao stručna nadogradnja, kongestija, hipoperfuzija, liječenje, praćenje i hitni postupci kod plućnog edema.</p><button class="btn primary" onclick="openLesson(6)">Otvori srčano popuštanje</button></div>
-<div class="card"><h4>🩺 Arterijska hipertenzija</h4><p>ESC 2024 klasifikacija, pravilna tehnika mjerenja, oštećenje ciljnih organa, liječenje, hitna stanja i edukacija.</p><button class="btn primary" onclick="openLesson(7)">Otvori hipertenziju</button></div>
-<div class="card"><h4>🦵 Venske bolesti, DVT i plućna embolija</h4><p>Kronična venska insuficijencija, varikoziteti, duboka venska tromboza, znakovi plućne embolije i sigurnosni prioriteti.</p><button class="btn" onclick="openLesson(7)">Otvori vaskularna stanja</button></div>
-</div>
-</div>
-
-<div class="section home-interactive-callout">
-<h3>Probaj interaktivno</h3>
-<p>U lekcijama možeš ubrzati ili usporiti srce, usporediti različite ritmove, unijeti vrijednosti krvnog tlaka, pratiti kako raste plućna kongestija, prepoznavati stvarnu opremu intenzivne skrbi, slagati sustav kisika, vježbati SBAR, postavljati V1–V6 i sastavljati plan zdravstvene njege.</p>
-<div class="grid3"><button class="btn primary" onclick="openLesson(1)">♥ Simulator pulsa</button><button class="btn" onclick="openLesson(2)">🩺 JIKS/JIL i oprema</button><button class="btn" onclick="openLesson(9)">⚡ Interaktivni laboratorij</button></div>
-</div>
-
-<div class="modules modules-home">
-<div class="module-card active"><span class="pill">AKTIVNO</span><h3>❤️ Srce i krvne žile</h3><p>Anatomija i fiziologija, promatranje bolesnika, JIKS/JIL, EKG i dijagnostika, terapija, ACS/AIM, srčano popuštanje, plućni edem, hipertenzija, vaskularna stanja, edukacija i vrednovanje.</p><button class="btn primary" onclick="openLesson(1)">Počni od prve lekcije</button></div>
-<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>🫁 Dišni sustav</h3><p>Struktura je pripremljena za buduću nastavnu cjelinu istim stručnim i interaktivnim standardom.</p></div>
-<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>🍽 Probavni sustav</h3><p>Bolesti probavnog sustava i zdravstvena njega – budući modul.</p></div>
-<div class="module-card"><span class="pill soon">SLJEDEĆE</span><h3>💧 Mokraćni sustav</h3><p>Bolesti mokraćnog sustava i zdravstvena njega – budući modul.</p></div>
-<div class="module-card"><span class="pill soon">PLANIRANO</span><h3>🧠 Živčani sustav</h3><p>Neurološka zdravstvena njega – budući modul.</p></div>
-<div class="module-card"><span class="pill soon">PLANIRANO</span><h3>🧬 Ostale cjeline</h3><p>Endokrini, hematološki, lokomotorni i drugi sustavi mogu se dodavati bez mijenjanja osnovne platforme.</p></div>
-</div>
-<div class="section">
-<h3>Kako učiti</h3>
-<p>Počni anatomijom i krvotokom, zatim prijeđi na sustavno promatranje, opremu i dijagnostiku. Bolesti uči kroz kliničku logiku: što se događa → kako se bolesnik prezentira → što treba brzo prepoznati → koje se pretrage i liječenje provode → što medicinska sestra/tehničar promatra, provodi i dokumentira → kako se bolesnik educira.</p>
-</div>
 </section>
-<div id="content"></div>
-<div class="footer"><p class="author-signature">Digitalnu učionicu osmislio i razvio: Petar Rajić</p><p class="author-sub">Zdravstvena njega 3 · nastavni materijal za učenike trećeg razreda medicinske škole</p><p class="screen-only">Edukativni materijal. U kliničkoj praksi primjenjuju se važeći protokoli ustanove, liječničke odredbe i kompetencije zdravstvenog djelatnika.</p></div>
-</main></div>
-<script src="data/exam-2026.js"></script>
-<script src="data/enhancements.js"></script>
-<script src="app.js"></script>
-<script src="enhance-app.js"></script>
-<script src="final-content.js"></script>
-<script src="final-skills.js"></script>
-<script src="final-fixes.js"></script>
-<script src="final-ge.js"></script>
-</body></html>
+
+<div class="section-head">
+<div><h2>Nastavna poglavlja</h2><p>Odaberi poglavlje koje želiš učiti.</p></div>
+</div>
+<section class="chapter-grid">
+<article class="chapter-card">
+<div class="chapter-copy">
+<div class="chapter-kicker">● AKTIVNO POGLAVLJE</div>
+<h3>Srce i krvne žile</h3>
+<p>Cjelovita nastavna cjelina: anatomija i fiziologija, promatranje bolesnika, JIKS/JIL i oprema, EKG, sigurna terapija, ACS/AIM, srčano popuštanje, hipertenzija, DVT/PE, planovi zdravstvene njege i priprema za usmeni ispit.</p>
+<div class="chapter-tags"><span>10 lekcija</span><span>interaktivni simulatori</span><span>stvarna oprema</span><span>50 + 10 pitanja</span><span>klinički scenariji</span></div>
+<div class="chapter-actions"><a class="pbtn primary" href="srce-i-krvne-zile.html">Otvori poglavlje</a><a class="pbtn secondary" id="chapterResume" href="srce-i-krvne-zile.html?lekcija=1"><span id="chapterProgressText">0/10 lekcija završeno</span></a></div>
+</div>
+<div class="chapter-art" aria-hidden="true"><div class="heart-glyph">🫀</div><small>Posebna stranica poglavlja s vlastitim sadržajem, pretraživanjem i napretkom.</small></div>
+</article>
+<aside class="future-card">
+<div class="future-icon">＋</div>
+<h3>Nova poglavlja</h3>
+<p>Sljedeće nastavne cjeline dodavat će se ovdje kao zasebne stranice, bez opterećivanja poglavlja koje učenik trenutačno uči.</p>
+</aside>
+</section>
+
+<div class="section-head">
+<div><h2>Kako je učionica organizirana</h2><p>Struktura je prilagođena učeniku medicinske škole, a ne samo čitanju teksta.</p></div>
+</div>
+<section class="feature-grid">
+<div class="feature"><div class="feature-icon2">📖</div><b>Digitalni udžbenik</b><span>Stručni tekst na hrvatskom jeziku, razine važnosti gradiva i kliničke poveznice.</span></div>
+<div class="feature"><div class="feature-icon2">🫀</div><b>Interaktivno učenje</b><span>Puls, EKG, krvni tlak, V1–V6, kongestija, SBAR i praktične odluke.</span></div>
+<div class="feature"><div class="feature-icon2">🩺</div><b>Stvarna medicinska oprema</b><span>Fotografije opreme iz intenzivne skrbi s objašnjenjem funkcije, sigurnosti i izvora.</span></div>
+<div class="feature"><div class="feature-icon2">🎓</div><b>Praćenje napretka</b><span>Završene lekcije pamte se na uređaju, a početna stranica nudi nastavak tamo gdje je učenik stao.</span></div>
+</section>
+<noscript><div class="noscript">Za interaktivno praćenje napretka potrebno je omogućiti JavaScript. Poglavlja i sadržaj i dalje se mogu otvoriti.</div></noscript>
+</main>
+<footer class="portal-footer"><div><strong>Zdravstvena njega 3</strong><br>Nastavni materijal za učenike trećeg razreda medicinske škole.</div><div class="signature">Digitalnu učionicu osmislio i razvio:<br><strong>Petar Rajić</strong></div></footer>
+<script src="portal.js"></script>
+</body>
+</html>
