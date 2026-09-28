@@ -2,8 +2,16 @@
 
 Digitalna učionica za učenike trećeg razreda medicinske škole.
 
-## Nastavna cjelina: Srce i krvne žile
+## Struktura platforme
+Početna stranica (`index.html`) sada je **portal nastavnih poglavlja**. Svako poglavlje otvara se na zasebnoj stranici kako bi sadržaj ostao pregledan i kako bi se platforma mogla jednostavno širiti novim nastavnim cjelinama.
+
+### Aktivno poglavlje
+- **Srce i krvne žile** → `srce-i-krvne-zile.html`
 - 10 detaljnih i međusobno povezanih lekcija
+- svaka lekcija ima izravnu poveznicu oblika `srce-i-krvne-zile.html?lekcija=5`
+- početni portal prikazuje napredak i učeniku nudi nastavak tamo gdje je stao
+
+## Srce i krvne žile
 - stručni tekst prilagođen razini trećeg razreda medicinske škole
 - tri razine učenja: **Moraš znati**, **Za vrlo dobar / odličan** i **Stručna nadogradnja**
 - originalne medicinske ilustracije i stvarne fotografije opreme JIKS/JIL
@@ -15,6 +23,9 @@ Digitalna učionica za učenike trećeg razreda medicinske škole.
 - 50 pitanja za usmeni ispit, 10 kliničkih scenarija i vremenski trening odgovora
 - hrvatski multimedijski i stručni izvori
 - responzivni prikaz za mobitel i računalo te A4 ispis
+
+## Buduća poglavlja
+Nova poglavlja dodaju se kao zasebne HTML stranice i kartice na početnom portalu, bez promjene strukture već završenih poglavlja.
 
 ## Autor
 Digitalnu učionicu osmislio i razvio **Petar Rajić**.
